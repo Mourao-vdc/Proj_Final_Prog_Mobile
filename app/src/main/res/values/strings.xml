@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">FinalProject</string>
+    <string name="ativos">Ativos Monitorizados</string>
+    <string name="noticias">Notícias</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
