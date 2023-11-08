@@ -3,8 +3,11 @@ package com.example.finalproject
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
+import android.widget.Toast
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,8 +36,18 @@ class Ativos : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_ativos, container, false)
+        val view = inflater.inflate(R.layout.fragment_ativos, container, false)
+
+        // variavel com o id do botao
+        val addStackButton: ImageButton = view.findViewById(R.id.add_stack)
+
+        // ação de clique
+        addStackButton.setOnClickListener {
+            // mostra a mensagem apos o clique
+            Toast.makeText(context, "Adicionar bolsa", Toast.LENGTH_SHORT).show()
+        }
+
+        return view
     }
 
     companion object {

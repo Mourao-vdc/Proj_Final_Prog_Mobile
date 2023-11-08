@@ -20,15 +20,9 @@ class MainActivity : AppCompatActivity() {
             {
                 R.id.ativos -> replaceFragment(Ativos())
                 R.id.noticias -> replaceFragment(Noticias())
-
-                else ->
-                {
-
-                }
             }
             true
         }
-
     }
 
     private fun replaceFragment(fragment: Fragment)

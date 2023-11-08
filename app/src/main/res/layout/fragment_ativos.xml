@@ -5,11 +5,31 @@
     android:layout_height="match_parent"
     tools:context=".Ativos">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme">
+
+        <ImageButton
+            android:id="@+id/add_stack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:src="@drawable/baseline_add_circle_outline_24"
+            android:contentDescription="@string/hello_blank_fragment"
+            android:padding="16dp"
+            android:background="@color/white"/>
+
+    </androidx.appcompat.widget.Toolbar>
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/recyclerViewAtivos"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="64dp"
         android:layout_marginBottom="16dp"/>
 
 </FrameLayout>
