@@ -2,8 +2,9 @@ package retrofit
 
 import retrofit2.Response
 
-class SymbolRepository(private val retrofitInterface: retrofitInterface)
+class SymbolRepository()
 {
+    private val retrofitInterface = RetrofitHelper.getInstance().create(retrofitInterface::class.java)
     suspend fun getSymbols(): Response<List<String>> {
         return retrofitInterface.getSymbols()
     }

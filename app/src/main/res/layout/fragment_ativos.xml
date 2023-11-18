@@ -9,9 +9,15 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@color/blue"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ativos"
+            android:textColor="@color/white"/>
 
         <ImageButton
             android:id="@+id/add_stack"
@@ -21,7 +27,7 @@
             android:src="@drawable/baseline_add_circle_outline_24"
             android:contentDescription="@string/hello_blank_fragment"
             android:padding="16dp"
-            android:background="@color/white"/>
+            android:background="@color/blue"/>
 
     </androidx.appcompat.widget.Toolbar>
 

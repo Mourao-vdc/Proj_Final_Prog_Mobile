@@ -1,7 +1,5 @@
 package retrofit
 
-import java.util.Date
-
 class SymbolDetails
 {
     var CEO: String = String()

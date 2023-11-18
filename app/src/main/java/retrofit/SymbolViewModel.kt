@@ -4,8 +4,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import retrofit2.Response
-class SymbolViewModel(private val repository: SymbolRepository) : ViewModel()
+
+class SymbolViewModel() : ViewModel()
 {
+    val repository = SymbolRepository()
 
     // Functions to fetch data
     fun fetchSymbols() {
@@ -29,10 +31,11 @@ class SymbolViewModel(private val repository: SymbolRepository) : ViewModel()
         }
     }
 
-    fun fetchNews() {
+    fun fetchNews():List<News>? {
+        lateinit var response:Response<List<News>>
         viewModelScope.launch {
-            val response = repository.getNews()
-            // Handle the response here
+            response = repository.getNews()
         }
+        return response.body()
     }
 }

@@ -14,6 +14,6 @@ interface retrofitInterface
     @GET("/api/symbols")
     suspend fun getSymbolDetails(): Response<List<SymbolDetails>>
 
-    @GET("/api/symbols")
+    @GET("/api/news")
     suspend fun getNews(): Response<List<News>>
 }
