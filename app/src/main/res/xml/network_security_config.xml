@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <!-- You might need to include specific certificates or remove this section based on your configuration -->
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">tuxdroid.pythonanywhere.com</domain>
+        <!-- Add other domains if needed -->
+    </domain-config>
+</network-security-config>

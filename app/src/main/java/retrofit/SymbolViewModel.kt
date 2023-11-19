@@ -1,13 +1,17 @@
-package retrofit
-
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
+import retrofit.News
+import retrofit.SymbolRepository
 import retrofit2.Response
 
-class SymbolViewModel() : ViewModel()
-{
-    val repository = SymbolRepository()
+class SymbolViewModel : ViewModel() {
+    private val repository = SymbolRepository()
+
+    private val _newsData = MutableLiveData<List<News>>()
+    val newsData: LiveData<List<News>> = _newsData
 
     // Functions to fetch data
     fun fetchSymbols() {
@@ -31,11 +35,14 @@ class SymbolViewModel() : ViewModel()
         }
     }
 
-    fun fetchNews():List<News>? {
-        lateinit var response:Response<List<News>>
+    fun fetchNews() {
         viewModelScope.launch {
-            response = repository.getNews()
+            val response = repository.getNews()
+            if (response.isSuccessful) {
+                _newsData.postValue(response.body())
+            } else {
+                // Handle error case
+            }
         }
-        return response.body()
     }
 }
