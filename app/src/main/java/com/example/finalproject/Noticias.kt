@@ -1,13 +1,15 @@
 package com.example.finalproject
 
-import RecyclerViewAdapterNews
+import com.example.finalproject.News.RecyclerViewAdapterNews
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.finalproject.News.NoticiasViewModel
 
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
@@ -30,14 +32,21 @@ class Noticias : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_noticias, container, false)
         val recyclerView: RecyclerView = view.findViewById(R.id.recyclerViewNews)
+        val progressBar: ProgressBar = view.findViewById(R.id.progressBar)
 
-        // Set up RecyclerView layout manager and adapter (assuming you have these defined)
+        // Set up RecyclerView layout manager and adapter
         val layoutManager = LinearLayoutManager(activity)
         recyclerView.layoutManager = layoutManager
 
         val viewmodel = NoticiasViewModel()
 
+        // Show progress bar initially
+        progressBar.visibility = View.VISIBLE
+
         viewmodel.newsList.observe(viewLifecycleOwner) { newsList ->
+            // Hide progress bar once data is loaded
+            progressBar.visibility = View.GONE
+
             val adapter = RecyclerViewAdapterNews(newsList)
             recyclerView.adapter = adapter
         }
