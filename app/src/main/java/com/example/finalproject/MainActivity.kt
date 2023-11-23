@@ -1,9 +1,11 @@
 package com.example.finalproject
 
+import SymbolViewModel
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.finalproject.databinding.ActivityMainBinding
+import retrofit.SymbolRepository
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,6 +15,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        SymbolRepository()
         replaceFragment(Ativos())
 
         binding.bottomNavigationView.setOnItemSelectedListener {

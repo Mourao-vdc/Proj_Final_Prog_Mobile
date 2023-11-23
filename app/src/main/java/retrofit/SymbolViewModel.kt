@@ -1,37 +1,41 @@
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import retrofit.News
+import retrofit.SymbolDetails
 import retrofit.SymbolRepository
-import retrofit2.Response
+import retrofit.SymbolSummary
+import retrofit.Symbols
 
 class SymbolViewModel : ViewModel() {
     private val repository = SymbolRepository()
 
+    private val _Symbol = MutableLiveData<List<Symbols>>()
+    val Symbol: LiveData<List<Symbols>> = _Symbol
+
+    private val _SymbolSummary = MutableLiveData<List<SymbolSummary>>()
+    val SymbolSummary: LiveData<List<SymbolSummary>> = _SymbolSummary
+
+    private val _SymbolDetails = MutableLiveData<List<SymbolDetails>>()
+    val SymbolDetails: LiveData<List<SymbolDetails>> = _SymbolDetails
+
     private val _newsData = MutableLiveData<List<News>>()
     val newsData: LiveData<List<News>> = _newsData
-
-    // Functions to fetch data
-    fun fetchSymbols() {
-        viewModelScope.launch {
-            val response = repository.getSymbols()
-            // Handle the response here
-        }
-    }
 
     fun fetchSymbolSummary() {
         viewModelScope.launch {
             val response = repository.getSymbolSummary()
-            // Handle the response here
+            _SymbolSummary.postValue(response)
         }
     }
 
     fun fetchSymbolDetails() {
         viewModelScope.launch {
             val response = repository.getSymbolDetails()
-            // Handle the response here
+            _SymbolDetails.postValue(response)
         }
     }
 

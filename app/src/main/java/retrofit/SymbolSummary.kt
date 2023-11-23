@@ -1,9 +1,8 @@
 package retrofit
 
-class SymbolSummary
-{
-    var change_percent: Double = 0.0
-    var current_price: Double = 0.0
-    var logo_url: String = String()
+data class SymbolSummary(
+    var change_percent: Double,
+    var current_price: Double,
+    var logo_url: String,
     var symbol: String = String()
-}
+)
