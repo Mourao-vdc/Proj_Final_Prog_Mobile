@@ -3,9 +3,12 @@ package com.example.finalproject.Stocks
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finalproject.R
+import com.squareup.picasso.Picasso
 import retrofit.SymbolSummary
 
 class RecyclerViewAdapterAtivos(private val mList: List<SymbolSummary>) : RecyclerView.Adapter<RecyclerViewAdapterAtivos.ViewHolder>()
@@ -24,19 +27,29 @@ class RecyclerViewAdapterAtivos(private val mList: List<SymbolSummary>) : Recycl
     {
         val ItemsViewModel = mList[position]
 
-        // sets the image to the imageview from our itemHolder class
-        //ItemsViewModel.image_url.let {
-        //    Picasso.get().load(it).into(holder.imageView)
-       //}
+        //sets the image to the imageview from our itemHolder class
+        ItemsViewModel.logo_url.let {
+            Picasso.get().load(it).into(holder.imageLogo)
+        }
 
         // sets the text to the textview from our itemHolder class
         holder.symbol.text = ItemsViewModel.symbol
 
         // sets the text to the textview from our itemHolder class
-        //holder.textViewTitle.text = ItemsViewModel.title
+        holder.change_percent.text = ItemsViewModel.change_percent.toString()
 
         // sets the text to the textview from our itemHolder class
-        //holder.textViewDescription.text = ItemsViewModel.description
+        holder.current_price.text = ItemsViewModel.current_price.toString()
+
+        // Update text color based on change_percent
+        val changePercent = ItemsViewModel.change_percent
+        if (changePercent >= 0) {
+            // Change text color to green for positive change
+            holder.change_percent.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.green))
+        } else {
+            // Change text color to red for negative change
+            holder.change_percent.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.red))
+        }
     }
 
     // return the number of the items in the list
@@ -46,9 +59,9 @@ class RecyclerViewAdapterAtivos(private val mList: List<SymbolSummary>) : Recycl
 
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView)
     {
-        //val imageView: ImageView = itemView.findViewById(R.id.imageview)
+        val imageLogo: ImageView = itemView.findViewById(R.id.imageLogo)
         val symbol: TextView = itemView.findViewById(R.id.tvSymbol)
-        //val textViewTitle: TextView = itemView.findViewById(R.id.textviewtitle)
-        //val textViewDescription: TextView = itemView.findViewById(R.id.textviewdescription)
+        val change_percent: TextView = itemView.findViewById(R.id.change_percent)
+        val current_price: TextView = itemView.findViewById(R.id.current_price)
     }
 }
