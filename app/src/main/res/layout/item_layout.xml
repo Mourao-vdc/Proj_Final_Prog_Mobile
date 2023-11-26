@@ -89,7 +89,7 @@
             android:layout_marginBottom="10dp"
             android:backgroundTint="@color/blue"
             android:contentDescription="@string/hello_blank_fragment"
-            android:text="@string/detalhes"
+            android:text="@string/btnDetalhes"
             android:textColor="@color/white"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"

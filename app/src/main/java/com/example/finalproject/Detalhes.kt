@@ -1,10 +1,15 @@
 package com.example.finalproject
 
+import SymbolViewModel
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.finalproject.Stocks.RecyclerViewAdapterDetalhes
 
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
@@ -25,7 +30,24 @@ class Detalhes : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detalhes, container, false)
+
+        val view = inflater.inflate(R.layout.fragment_detalhes, container, false)
+        val progressBar: ProgressBar = view.findViewById(R.id.progressBar)
+
+        // Show progress bar initially
+        progressBar.visibility = View.VISIBLE
+
+        val symbolViewModel = SymbolViewModel()
+        symbolViewModel.fetchSymbolDetails()
+        symbolViewModel.SymbolDetails.observe(viewLifecycleOwner) { symbolDetails ->
+            // Hide progress bar once data is loaded
+            progressBar.visibility = View.GONE
+
+            val itemAdapter = RecyclerViewAdapterDetalhes(symbolDetails)
+            val recyclerView : RecyclerView = requireView().findViewById(R.id.recyclerViewDetails)
+            recyclerView.layoutManager = LinearLayoutManager(context)
+            recyclerView.adapter = itemAdapter
+        }
+        return view
     }
 }
