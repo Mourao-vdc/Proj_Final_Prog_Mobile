@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    app:cardElevation="6dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="65dp"
+            android:id="@+id/imageLogoMon"
+            android:layout_marginStart="20dp"
+            android:padding="8dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvSymbolMon"
+            android:text="@string/hello_blank_fragment"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:layout_marginStart="20dp"
+            app:layout_constraintStart_toEndOf="@id/imageLogoMon"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/change_percentMon"
+            android:text="@string/hello_blank_fragment"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:layout_marginStart="40dp"
+            app:layout_constraintStart_toEndOf="@id/tvSymbolMon"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/current_priceMon"
+            android:text="@string/hello_blank_fragment"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:layout_marginStart="25dp"
+            app:layout_constraintStart_toEndOf="@id/change_percentMon"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <ImageButton
+            android:id="@+id/remove_stackMon"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginEnd="8dp"
+            android:background="@color/white"
+            android:contentDescription="@string/hello_blank_fragment"
+            android:src="@drawable/baseline_cancel_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Spacer View to create space -->
+        <View
+            android:id="@+id/spacerMon"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            app:layout_constraintTop_toBottomOf="@id/remove_stackMon"
+            app:layout_constraintBottom_toTopOf="@id/view_detalhesMon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <Button
+            android:id="@+id/view_detalhesMon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/blue"
+            android:contentDescription="@string/hello_blank_fragment"
+            android:text="@string/btnDetalhes"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spacerMon"
+            app:layout_constraintVertical_bias="0.109" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

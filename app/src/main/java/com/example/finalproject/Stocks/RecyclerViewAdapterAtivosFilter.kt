@@ -11,13 +11,13 @@ import com.example.finalproject.R
 import com.squareup.picasso.Picasso
 import retrofit.SymbolSummary
 
-class RecyclerViewAdapterAtivos(private val mList: List<SymbolSummary>) : RecyclerView.Adapter<RecyclerViewAdapterAtivos.ViewHolder>()
+class RecyclerViewAdapterAtivosFilter(private val mList: MutableList<SymbolSummary>) : RecyclerView.Adapter<RecyclerViewAdapterAtivosFilter.ViewHolder>()
 {
     // create Symbol views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
     {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_layout, parent, false)
+            .inflate(R.layout.item_layout_ativos_filter, parent, false)
 
         return ViewHolder(view)
     }
@@ -52,16 +52,27 @@ class RecyclerViewAdapterAtivos(private val mList: List<SymbolSummary>) : Recycl
         }
     }
 
-    // return the number of the items in the list
+    // Retorna o numero de elementos da lista
     override fun getItemCount(): Int {
         return mList.size
     }
 
-    class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView)
-    {
-        val imageLogo: ImageView = itemView.findViewById(R.id.imageLogo)
-        val symbol: TextView = itemView.findViewById(R.id.tvSymbol)
-        val change_percent: TextView = itemView.findViewById(R.id.change_percent)
-        val current_price: TextView = itemView.findViewById(R.id.current_price)
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        // Referências aos elementos
+        private val addButton: ImageView = itemView.findViewById(R.id.add_stackFil)
+        val imageLogo: ImageView = itemView.findViewById(R.id.imageLogoFil)
+        val symbol: TextView = itemView.findViewById(R.id.tvSymbolFil)
+        val change_percent: TextView = itemView.findViewById(R.id.change_percentFil)
+        val current_price: TextView = itemView.findViewById(R.id.current_priceFil)
+
+        init {
+            addButton.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    mList.removeAt(position) // Remove o item da lista
+                    notifyItemRemoved(position) // Notifica o adaptador sobre a remoção
+                }
+            }
+        }
     }
 }

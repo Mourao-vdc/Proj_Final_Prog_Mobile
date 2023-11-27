@@ -14,7 +14,7 @@
         <ImageView
             android:layout_width="70dp"
             android:layout_height="65dp"
-            android:id="@+id/imageLogo"
+            android:id="@+id/imageLogoFil"
             android:layout_marginStart="20dp"
             android:padding="8dp"
             android:adjustViewBounds="true"
@@ -22,67 +22,67 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
-        
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tvSymbol"
+            android:id="@+id/tvSymbolFil"
             android:text="@string/hello_blank_fragment"
             android:textSize="16sp"
             android:textColor="@color/black"
             android:layout_marginStart="20dp"
-            app:layout_constraintStart_toEndOf="@id/imageLogo"
+            app:layout_constraintStart_toEndOf="@id/imageLogoFil"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/change_percent"
+            android:id="@+id/change_percentFil"
             android:text="@string/hello_blank_fragment"
             android:textSize="16sp"
             android:textColor="@color/black"
             android:layout_marginStart="40dp"
-            app:layout_constraintStart_toEndOf="@id/tvSymbol"
+            app:layout_constraintStart_toEndOf="@id/tvSymbolFil"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/current_price"
+            android:id="@+id/current_priceFil"
             android:text="@string/hello_blank_fragment"
             android:textSize="16sp"
             android:textColor="@color/black"
             android:layout_marginStart="25dp"
-            app:layout_constraintStart_toEndOf="@id/change_percent"
+            app:layout_constraintStart_toEndOf="@id/change_percentFil"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
         <ImageButton
-            android:id="@+id/remove_stack"
+            android:id="@+id/add_stackFil"
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:layout_marginEnd="8dp"
             android:background="@color/white"
             android:contentDescription="@string/hello_blank_fragment"
-            android:src="@drawable/baseline_cancel_24"
+            android:src="@drawable/baseline_add_circle_outline2_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <!-- Spacer View to create space -->
         <View
-            android:id="@+id/spacer"
+            android:id="@+id/spacerFil"
             android:layout_width="0dp"
             android:layout_height="2dp"
-            app:layout_constraintTop_toBottomOf="@id/remove_stack"
-            app:layout_constraintBottom_toTopOf="@id/view_detalhes"
+            app:layout_constraintTop_toBottomOf="@id/add_stackFil"
+            app:layout_constraintBottom_toTopOf="@id/view_detalhesFil"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
         <Button
-            android:id="@+id/view_detalhes"
+            android:id="@+id/view_detalhesFil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -95,7 +95,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/spacer"
+            app:layout_constraintTop_toBottomOf="@id/spacerFil"
             app:layout_constraintVertical_bias="0.109" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
