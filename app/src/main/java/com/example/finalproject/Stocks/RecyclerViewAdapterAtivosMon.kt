@@ -8,11 +8,13 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finalproject.R
+import com.example.finalproject.StockList
 import com.squareup.picasso.Picasso
 import retrofit.SymbolSummary
 
 class RecyclerViewAdapterAtivosMon(private val mList: MutableList<SymbolSummary>) : RecyclerView.Adapter<RecyclerViewAdapterAtivosMon.ViewHolder>()
 {
+    private val symbolList = StockList()
     // create Symbol views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
     {
@@ -70,6 +72,7 @@ class RecyclerViewAdapterAtivosMon(private val mList: MutableList<SymbolSummary>
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     mList.removeAt(position) // Remove o item da lista
+                    symbolList.symbolList.add(mList[position])
                     notifyItemRemoved(position) // Notifica o adaptador sobre a remoção
                 }
             }

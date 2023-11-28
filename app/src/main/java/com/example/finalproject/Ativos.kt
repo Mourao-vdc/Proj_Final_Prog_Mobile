@@ -12,12 +12,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finalproject.Stocks.RecyclerViewAdapterAtivosMon
-import retrofit.SymbolSummary
 
 class Ativos : Fragment() {
 
     // Lista mutável para armazenar os dados recebidos
-    private val symbolList: MutableList<SymbolSummary> = mutableListOf()
+    private val symbolList2 = StockList()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -50,11 +49,11 @@ class Ativos : Fragment() {
             progressBar.visibility = View.GONE
 
             // Adiciona os dados recebidos à lista
-            symbolList.clear() // Limpa a lista para evitar duplicados
-            symbolList.addAll(symbolSummary) // Adiciona os novos dados à lista
+            //symbolList2.clear() // Limpa a lista para evitar duplicados
+            symbolList2.symbolList2.addAll(symbolSummary) // Adiciona os novos dados à lista
 
             // Cria um adaptador para o RecyclerView com base na lista de dados
-            val itemAdapter = RecyclerViewAdapterAtivosMon(symbolList)
+            val itemAdapter = RecyclerViewAdapterAtivosMon(symbolList2.symbolList2)
             val recyclerView : RecyclerView = requireView().findViewById(R.id.recyclerViewAtivosMon)
             recyclerView.layoutManager = LinearLayoutManager(context)
             recyclerView.adapter = itemAdapter
