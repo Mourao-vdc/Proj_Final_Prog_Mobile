@@ -35,8 +35,15 @@ class Ativos : Fragment() {
 
         // ação de clique
         addStackButton.setOnClickListener {
-            // mostra a mensagem apos o clique
             Toast.makeText(context, "Adicionar bolsa", Toast.LENGTH_SHORT).show()
+
+            val fragment = Ativos_filter()
+            val fragmentManager = requireActivity().supportFragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
+
+            fragmentTransaction.replace(R.id.frame_layout, fragment)
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
         }
 
         // Show progress bar initially

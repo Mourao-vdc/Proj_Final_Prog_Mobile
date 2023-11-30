@@ -71,8 +71,14 @@ class RecyclerViewAdapterAtivosFilter(private val mList: MutableList<SymbolSumma
             addButton.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
+                    val removedItem = mList[position] // Armazena o item a ser movido
                     mList.removeAt(position) // Remove o item da lista
-                    symbolList.symbolList2.add(mList[position])
+
+                    // Verifica se o índice está dentro dos limites antes de adicionar à symbolList
+                    if (position < mList.size) {
+                        symbolList.symbolList2.add(removedItem) // Adiciona à symbolList
+                    }
+
                     notifyItemRemoved(position) // Notifica o adaptador sobre a remoção
                 }
             }

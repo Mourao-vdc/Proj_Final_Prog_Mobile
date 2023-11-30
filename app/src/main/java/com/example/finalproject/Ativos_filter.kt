@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,6 +29,20 @@ class Ativos_filter : Fragment() {
         val view = inflater.inflate(R.layout.fragment_ativos_filter, container, false)
         val progressBar : ProgressBar = view.findViewById(R.id.progressBar)
 
+        // variavel com o id do botao
+        val backAtivos: ImageButton = view.findViewById(R.id.back_ativos)
+
+        // ação de clique
+        backAtivos.setOnClickListener {
+            val fragment = Ativos()
+            val fragmentManager = requireActivity().supportFragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
+
+            fragmentTransaction.replace(R.id.frame_layout, fragment)
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+        }
+
         // Show progress bar initially
         progressBar.visibility = View.VISIBLE
 
@@ -39,7 +54,7 @@ class Ativos_filter : Fragment() {
 
             // Adiciona os dados recebidos à lista
             //symbolList.clear() // Limpa a lista para evitar duplicados
-            //symbolList.addAll(symbolSummary) // Adiciona os novos dados à lista
+            symbolList.symbolList.addAll(symbolSummary) // Adiciona os novos dados à lista
 
             // Cria um adaptador para o RecyclerView com base na lista de dados
             val itemAdapter = RecyclerViewAdapterAtivosFilter(symbolList.symbolList)

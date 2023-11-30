@@ -3,10 +3,15 @@ package com.example.finalproject.Stocks
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
+import com.example.finalproject.Detalhes
 import com.example.finalproject.R
 import com.example.finalproject.StockList
 import com.squareup.picasso.Picasso
@@ -62,6 +67,7 @@ class RecyclerViewAdapterAtivosMon(private val mList: MutableList<SymbolSummary>
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         // Referências aos elementos
         private val removeButton: ImageView = itemView.findViewById(R.id.remove_stackMon)
+        private val detalhesButton: Button = itemView.findViewById(R.id.view_detalhesMon)
         val imageLogo: ImageView = itemView.findViewById(R.id.imageLogoMon)
         val symbol: TextView = itemView.findViewById(R.id.tvSymbolMon)
         val change_percent: TextView = itemView.findViewById(R.id.change_percentMon)
@@ -71,9 +77,42 @@ class RecyclerViewAdapterAtivosMon(private val mList: MutableList<SymbolSummary>
             removeButton.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
+                    val removedItem = mList[position] // Armazena o item a ser movido
                     mList.removeAt(position) // Remove o item da lista
-                    symbolList.symbolList.add(mList[position])
+
+                    // Verifica se o índice está dentro dos limites antes de adicionar à symbolList
+                    if (position < mList.size) {
+                        symbolList.symbolList.add(removedItem) // Adiciona à symbolList
+                    }
+
                     notifyItemRemoved(position) // Notifica o adaptador sobre a remoção
+                }
+            }
+
+            detalhesButton.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    // Aqui você pode abrir o fragmento desejado
+                    val fragment =
+                        Detalhes()
+
+                    // Inicializa o FragmentManager
+                    val fragmentManager: FragmentManager =
+                        (itemView.context as AppCompatActivity).supportFragmentManager
+
+                    // Inicia a transação para adicionar/substituir o fragmento
+                    val fragmentTransaction: FragmentTransaction =
+                        fragmentManager.beginTransaction()
+
+                    // Substitui ou adiciona o fragmento dependendo do seu caso
+                    fragmentTransaction.replace(R.id.frame_layout, fragment)
+                    //fragmentTransaction.add(R.id.fragment_detalhes, fragment)  // Use isso se deseja adicionar o fragmento ao invés de substituir
+
+                    // Adiciona a transação à pilha de volta (opcional)
+                    fragmentTransaction.addToBackStack(null)
+
+                    // Commit da transação
+                    fragmentTransaction.commit()
                 }
             }
         }
