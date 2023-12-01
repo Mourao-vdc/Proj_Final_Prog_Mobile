@@ -14,8 +14,7 @@ import com.example.finalproject.Stocks.RecyclerViewAdapterAtivosFilter
 
 class Ativos_filter : Fragment() {
 
-    // Lista mutável para armazenar os dados recebidos
-    private val symbolList = StockList()
+    private val stockList = mutableListOf<StockList>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -54,10 +53,10 @@ class Ativos_filter : Fragment() {
 
             // Adiciona os dados recebidos à lista
             //symbolList.clear() // Limpa a lista para evitar duplicados
-            symbolList.symbolList.addAll(symbolSummary) // Adiciona os novos dados à lista
+            //symbolList.symbolList.addAll(symbolSummary) // Adiciona os novos dados à lista
 
             // Cria um adaptador para o RecyclerView com base na lista de dados
-            val itemAdapter = RecyclerViewAdapterAtivosFilter(symbolList.symbolList)
+            val itemAdapter = RecyclerViewAdapterAtivosFilter(stockList)
             val recyclerView : RecyclerView = requireView().findViewById(R.id.recyclerViewAtivosFil)
             recyclerView.layoutManager = LinearLayoutManager(context)
             recyclerView.adapter = itemAdapter

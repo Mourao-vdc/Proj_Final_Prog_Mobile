@@ -12,9 +12,9 @@ import com.example.finalproject.StockList
 import com.squareup.picasso.Picasso
 import retrofit.SymbolSummary
 
-class RecyclerViewAdapterAtivosFilter(private val mList: MutableList<SymbolSummary>) : RecyclerView.Adapter<RecyclerViewAdapterAtivosFilter.ViewHolder>()
+class RecyclerViewAdapterAtivosFilter(private val mList: MutableList<StockList>) : RecyclerView.Adapter<RecyclerViewAdapterAtivosFilter.ViewHolder>()
 {
-    private val symbolList = StockList()
+    private var symbolList: SymbolSummary? = null
     // create Symbol views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
     {
@@ -30,21 +30,21 @@ class RecyclerViewAdapterAtivosFilter(private val mList: MutableList<SymbolSumma
         val ItemsViewModel = mList[position]
 
         //sets the image to the imageview from our itemHolder class
-        ItemsViewModel.logo_url.let {
+        ItemsViewModel.logo_url2.let {
             Picasso.get().load(it).into(holder.imageLogo)
         }
 
         // sets the text to the textview from our itemHolder class
-        holder.symbol.text = ItemsViewModel.symbol
+        holder.symbol.text = ItemsViewModel.symbol2
 
         // sets the text to the textview from our itemHolder class
-        holder.change_percent.text = ItemsViewModel.change_percent.toString()
+        holder.change_percent.text = ItemsViewModel.change_percent2.toString()
 
         // sets the text to the textview from our itemHolder class
-        holder.current_price.text = ItemsViewModel.current_price.toString()
+        holder.current_price.text = ItemsViewModel.current_price2.toString()
 
         // Update text color based on change_percent
-        val changePercent = ItemsViewModel.change_percent
+        val changePercent = ItemsViewModel.change_percent2
         if (changePercent >= 0) {
             // Change text color to green for positive change
             holder.change_percent.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.green))
@@ -74,10 +74,13 @@ class RecyclerViewAdapterAtivosFilter(private val mList: MutableList<SymbolSumma
                     val removedItem = mList[position] // Armazena o item a ser movido
                     mList.removeAt(position) // Remove o item da lista
 
-                    // Verifica se o índice está dentro dos limites antes de adicionar à symbolList
-                    if (position < mList.size) {
-                        symbolList.symbolList2.add(removedItem) // Adiciona à symbolList
-                    }
+                    // Atualiza a instância da classe StockList
+                    symbolList = SymbolSummary(
+                        change_percent = removedItem.change_percent2,
+                        current_price = removedItem.current_price2,
+                        logo_url = removedItem.logo_url2,
+                        symbol = removedItem.symbol2
+                    )
 
                     notifyItemRemoved(position) // Notifica o adaptador sobre a remoção
                 }

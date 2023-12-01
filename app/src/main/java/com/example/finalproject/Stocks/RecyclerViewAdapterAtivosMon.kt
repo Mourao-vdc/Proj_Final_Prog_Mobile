@@ -19,7 +19,7 @@ import retrofit.SymbolSummary
 
 class RecyclerViewAdapterAtivosMon(private val mList: MutableList<SymbolSummary>) : RecyclerView.Adapter<RecyclerViewAdapterAtivosMon.ViewHolder>()
 {
-    private val symbolList = StockList()
+    private var symbolList: StockList? = null
     // create Symbol views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
     {
@@ -80,10 +80,13 @@ class RecyclerViewAdapterAtivosMon(private val mList: MutableList<SymbolSummary>
                     val removedItem = mList[position] // Armazena o item a ser movido
                     mList.removeAt(position) // Remove o item da lista
 
-                    // Verifica se o índice está dentro dos limites antes de adicionar à symbolList
-                    if (position < mList.size) {
-                        symbolList.symbolList.add(removedItem) // Adiciona à symbolList
-                    }
+                    // Atualiza a instância da classe StockList
+                    symbolList = StockList(
+                        change_percent2 = removedItem.change_percent,
+                        current_price2 = removedItem.current_price,
+                        logo_url2 = removedItem.logo_url,
+                        symbol2 = removedItem.symbol
+                    )
 
                     notifyItemRemoved(position) // Notifica o adaptador sobre a remoção
                 }

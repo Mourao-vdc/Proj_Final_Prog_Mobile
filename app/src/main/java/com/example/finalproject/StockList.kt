@@ -1,9 +1,8 @@
 package com.example.finalproject
 
-import retrofit.SymbolSummary
-
-class StockList
-{
-    val symbolList: MutableList<SymbolSummary> = mutableListOf()
-    val symbolList2: MutableList<SymbolSummary> = mutableListOf()
-}
+data class StockList(
+    var change_percent2: Double,
+    var current_price2: Double,
+    var logo_url2: String,
+    var symbol2: String,
+    )

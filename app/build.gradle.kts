@@ -63,4 +63,6 @@ dependencies {
     annotationProcessor("com.github.bumptech.glide:compiler:4.11.0")
     //Picasso
     implementation("com.squareup.picasso:picasso:2.8")
+    //Plot Chart
+    implementation("com.androidplot:androidplot-core:1.5.10")
 }

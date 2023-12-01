@@ -1,15 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:ap="http://schemas.android.com/tools"
     android:layout_margin="10dp"
     app:cardElevation="6dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
+
+        <com.androidplot.xy.XYPlot
+            style="@style/APDefacto.Dark"
+            android:id="@+id/plot"
+            android:layout_width="fill_parent"
+            android:layout_height="300dp"
+            ap:title="A Simple XY Plot"
+            ap:rangeTitle="range"
+            ap:domainTitle="domain"
+            ap:lineLabels="left|bottom"
+            ap:lineLabelRotationBottom="-45"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <ImageView
             android:id="@+id/imageLogoDetalhes"
@@ -19,33 +32,79 @@
             android:adjustViewBounds="true"
             android:padding="8dp"
             android:scaleType="fitXY"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@id/plot"
+            app:layout_constraintTop_toBottomOf="@id/plot"
             app:layout_constraintVertical_bias="0.12" />
 
         <TextView
-            android:id="@+id/tvCEO"
+            android:id="@+id/SymbolDel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="@string/hello_blank_fragment"
             android:textColor="@color/black"
             android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/imageLogoDetalhes"
             app:layout_constraintStart_toEndOf="@id/imageLogoDetalhes"
-            app:layout_constraintTop_toTopOf="@id/imageLogoDetalhes"
-            app:layout_constraintBottom_toBottomOf="@id/imageLogoDetalhes" />
+            app:layout_constraintTop_toTopOf="@id/imageLogoDetalhes" />
 
         <TextView
-            android:id="@+id/Sector"
+            android:id="@+id/change_percentDel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="@string/hello_blank_fragment"
             android:textColor="@color/black"
             android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@id/tvCEO"
-            app:layout_constraintTop_toTopOf="@id/tvCEO"
-            app:layout_constraintBottom_toBottomOf="@id/tvCEO" />
+            app:layout_constraintBottom_toBottomOf="@id/SymbolDel"
+            app:layout_constraintStart_toEndOf="@id/SymbolDel"
+            app:layout_constraintTop_toTopOf="@id/SymbolDel" />
+
+        <TextView
+            android:id="@+id/current_priceDel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/hello_blank_fragment"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/change_percentDel"
+            app:layout_constraintStart_toEndOf="@id/change_percentDel"
+            app:layout_constraintTop_toTopOf="@id/change_percentDel" />
+
+        <TextView
+            android:id="@+id/CEODel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/hello_blank_fragment"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/imageLogoDetalhes"
+            app:layout_constraintTop_toBottomOf="@id/imageLogoDetalhes" />
+
+        <TextView
+            android:id="@+id/SetorDel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/hello_blank_fragment"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/CEODel"
+            app:layout_constraintStart_toEndOf="@id/CEODel"
+            app:layout_constraintTop_toTopOf="@id/CEODel" />
+
+        <TextView
+            android:id="@+id/DescripDel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/hello_blank_fragment"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/CEODel"
+            app:layout_constraintTop_toBottomOf="@id/CEODel" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
