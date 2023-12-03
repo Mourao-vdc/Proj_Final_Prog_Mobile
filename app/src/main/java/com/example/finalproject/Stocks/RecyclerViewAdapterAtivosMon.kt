@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
@@ -66,7 +67,7 @@ class RecyclerViewAdapterAtivosMon(private val mList: MutableList<SymbolSummary>
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         // Referências aos elementos
-        private val removeButton: ImageView = itemView.findViewById(R.id.remove_stackMon)
+        private val addButton: ImageView = itemView.findViewById(R.id.add_stackMon)
         private val detalhesButton: Button = itemView.findViewById(R.id.view_detalhesMon)
         val imageLogo: ImageView = itemView.findViewById(R.id.imageLogoMon)
         val symbol: TextView = itemView.findViewById(R.id.tvSymbolMon)
@@ -74,21 +75,18 @@ class RecyclerViewAdapterAtivosMon(private val mList: MutableList<SymbolSummary>
         val current_price: TextView = itemView.findViewById(R.id.current_priceMon)
 
         init {
-            removeButton.setOnClickListener {
+            addButton.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    val removedItem = mList[position] // Armazena o item a ser movido
+                    val Item = mList[position] // Armazena o item a ser movido
                     mList.removeAt(position) // Remove o item da lista
 
-                    // Atualiza a instância da classe StockList
-                    symbolList = StockList(
-                        change_percent2 = removedItem.change_percent,
-                        current_price2 = removedItem.current_price,
-                        logo_url2 = removedItem.logo_url,
-                        symbol2 = removedItem.symbol
-                    )
+                    SymbolsRepository.getRepository().symbolList.add(Item.symbol) // Adiciona o item à lista de símbolos
+
+                    Toast.makeText(itemView.context, "Adicionado à lista de ativos", Toast.LENGTH_SHORT).show()
 
                     notifyItemRemoved(position) // Notifica o adaptador sobre a remoção
+
                 }
             }
 

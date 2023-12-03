@@ -3,6 +3,7 @@ package com.example.finalproject
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.finalproject.Stocks.SymbolsRepository
 import com.example.finalproject.databinding.ActivityMainBinding
 import retrofit.SymbolRepository
 
@@ -15,16 +16,18 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         SymbolRepository()
-        replaceFragment(Ativos())
-
+        SymbolsRepository // Inicializa o repositório de símbolos
+        replaceFragment(Ativos_filter())
+        SymbolsRepository.getRepository().symbolList.clear()
         binding.bottomNavigationView.setOnItemSelectedListener {
             when(it.itemId)
             {
-                R.id.ativos -> replaceFragment(Ativos())
+                R.id.ativos -> replaceFragment(Ativos_filter())
                 R.id.noticias -> replaceFragment(Noticias())
             }
             true
         }
+        SymbolsRepository.getRepository().symbolList.clear()
     }
 
     private fun replaceFragment(fragment: Fragment)

@@ -2,6 +2,7 @@ package com.example.finalproject
 
 import SymbolViewModel
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -51,10 +52,13 @@ class Detalhes : Fragment() {
             // Hide progress bar once data is loaded
             progressBar.visibility = View.GONE
 
+
+            // Cria um adaptador para o RecyclerView com base na lista de dados
             val itemAdapter = RecyclerViewAdapterDetalhes(symbolDetails)
             val recyclerView : RecyclerView = requireView().findViewById(R.id.recyclerViewDetails)
             recyclerView.layoutManager = LinearLayoutManager(context)
             recyclerView.adapter = itemAdapter
+
         }
         return view
     }

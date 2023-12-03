@@ -60,13 +60,13 @@
             app:layout_constraintBottom_toBottomOf="parent"/>
 
         <ImageButton
-            android:id="@+id/remove_stackMon"
+            android:id="@+id/add_stackMon"
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:layout_marginEnd="8dp"
             android:background="@color/white"
             android:contentDescription="@string/hello_blank_fragment"
-            android:src="@drawable/baseline_cancel_24"
+            android:src="@drawable/baseline_add_circle_outline2_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -76,7 +76,7 @@
             android:id="@+id/spacerMon"
             android:layout_width="0dp"
             android:layout_height="2dp"
-            app:layout_constraintTop_toBottomOf="@id/remove_stackMon"
+            app:layout_constraintTop_toBottomOf="@id/add_stackMon"
             app:layout_constraintBottom_toTopOf="@id/view_detalhesMon"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>

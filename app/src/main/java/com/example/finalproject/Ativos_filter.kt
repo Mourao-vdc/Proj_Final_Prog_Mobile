@@ -7,14 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finalproject.Stocks.RecyclerViewAdapterAtivosFilter
+import com.example.finalproject.Stocks.SymbolsRepository
+import retrofit.SymbolRepository
+import retrofit.SymbolSummary
 
 class Ativos_filter : Fragment() {
 
-    private val stockList = mutableListOf<StockList>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -29,10 +32,12 @@ class Ativos_filter : Fragment() {
         val progressBar : ProgressBar = view.findViewById(R.id.progressBar)
 
         // variavel com o id do botao
-        val backAtivos: ImageButton = view.findViewById(R.id.back_ativos)
+        val addStackButton: ImageButton = view.findViewById(R.id.add_stack)
 
         // ação de clique
-        backAtivos.setOnClickListener {
+        addStackButton.setOnClickListener {
+            Toast.makeText(context, "Adicionar bolsa", Toast.LENGTH_SHORT).show()
+
             val fragment = Ativos()
             val fragmentManager = requireActivity().supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()
@@ -46,17 +51,21 @@ class Ativos_filter : Fragment() {
         progressBar.visibility = View.VISIBLE
 
         val symbolViewModel = SymbolViewModel()
-        symbolViewModel.fetchSymbolSummary()
+        symbolViewModel.fetchSymbolSummaryInRepo()
         symbolViewModel.SymbolSummary.observe(viewLifecycleOwner){symbolSummary ->
+
             // Hide progress bar once data is loaded
             progressBar.visibility = View.GONE
+
+            // Convert the received List<SymbolSummary> to a MutableList<SymbolSummary>
+            val mutableSymbolSummary: MutableList<SymbolSummary> = symbolSummary.toMutableList()
 
             // Adiciona os dados recebidos à lista
             //symbolList.clear() // Limpa a lista para evitar duplicados
             //symbolList.symbolList.addAll(symbolSummary) // Adiciona os novos dados à lista
 
             // Cria um adaptador para o RecyclerView com base na lista de dados
-            val itemAdapter = RecyclerViewAdapterAtivosFilter(stockList)
+            val itemAdapter = RecyclerViewAdapterAtivosFilter(mutableSymbolSummary)
             val recyclerView : RecyclerView = requireView().findViewById(R.id.recyclerViewAtivosFil)
             recyclerView.layoutManager = LinearLayoutManager(context)
             recyclerView.adapter = itemAdapter

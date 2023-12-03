@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finalproject.Stocks.RecyclerViewAdapterAtivosMon
+import com.example.finalproject.Stocks.SymbolsRepository
 import retrofit.SymbolSummary
 
 class Ativos : Fragment() {
@@ -30,12 +31,10 @@ class Ativos : Fragment() {
         val progressBar: ProgressBar = view.findViewById(R.id.progressBar)
 
         // variavel com o id do botao
-        val addStackButton: ImageButton = view.findViewById(R.id.add_stack)
+        val backAtivos: ImageButton = view.findViewById(R.id.back_ativos)
 
         // ação de clique
-        addStackButton.setOnClickListener {
-            Toast.makeText(context, "Adicionar bolsa", Toast.LENGTH_SHORT).show()
-
+        backAtivos.setOnClickListener {
             val fragment = Ativos_filter()
             val fragmentManager = requireActivity().supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()

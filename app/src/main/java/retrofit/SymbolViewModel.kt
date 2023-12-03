@@ -11,19 +11,19 @@ import retrofit.SymbolSummary
 import retrofit.Symbols
 
 class SymbolViewModel : ViewModel() {
-    private val repository = SymbolRepository()
+    val repository = SymbolRepository()
 
     private val _Symbol = MutableLiveData<List<Symbols>>()
     val Symbol: LiveData<List<Symbols>> = _Symbol
 
     private val _SymbolSummary = MutableLiveData<List<SymbolSummary>>()
-    val SymbolSummary: LiveData<List<SymbolSummary>> = _SymbolSummary
+    val SymbolSummary: MutableLiveData<List<SymbolSummary>> = _SymbolSummary
 
     private val _SymbolDetails = MutableLiveData<List<SymbolDetails>>()
-    val SymbolDetails: LiveData<List<SymbolDetails>> = _SymbolDetails
+    val SymbolDetails: MutableLiveData<List<SymbolDetails>> = _SymbolDetails
 
     private val _newsData = MutableLiveData<List<News>>()
-    val newsData: LiveData<List<News>> = _newsData
+    val newsData: MutableLiveData<List<News>> = _newsData
 
     fun fetchSymbolSummary() {
         viewModelScope.launch {
@@ -47,6 +47,20 @@ class SymbolViewModel : ViewModel() {
             } else {
                 // Handle error case
             }
+        }
+    }
+
+    fun fetchSymbolSummaryInRepo() {
+        viewModelScope.launch {
+            val response = repository.getSymbolSummaryInRepo()
+            _SymbolSummary.postValue(response)
+        }
+    }
+
+    fun fetchSymbolDetailsInRepo() {
+        viewModelScope.launch {
+            val response = repository.getSymbolDetailsInRepo()
+            _SymbolDetails.postValue(response)
         }
     }
 }
