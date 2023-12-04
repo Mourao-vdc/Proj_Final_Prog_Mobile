@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.androidplot.xy.LineAndPointFormatter
 import com.androidplot.xy.SimpleXYSeries
@@ -52,6 +53,16 @@ class RecyclerViewAdapterDetalhes(private val mList: List<SymbolDetails>) : Recy
         // sets the text to the textview from our itemHolder class
         holder.description.text = ItemsViewModel.description
 
+        // Update text color based on change_percent
+        val changePercent = ItemsViewModel.details.change_percent
+        if (changePercent >= 0) {
+            // Change text color to green for positive change
+            holder.change_percent.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.green))
+        } else {
+            // Change text color to red for negative change
+            holder.change_percent.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.red))
+        }
+
         // Assuming chart_data.October_2022 is a List<Double>
         val seriesData: List<Double> = ItemsViewModel.chart_data.October_2022
 
@@ -64,7 +75,7 @@ class RecyclerViewAdapterDetalhes(private val mList: List<SymbolDetails>) : Recy
 
         // Set up a formatter for the series
         val formatter = LineAndPointFormatter(
-            Color.RED, // Change to your desired color
+            Color.BLUE, // Change to your desired color
             null, // Customize to add different configurations if needed
             null, // Customize to add different configurations if needed
             null  // Customize to add different configurations if needed

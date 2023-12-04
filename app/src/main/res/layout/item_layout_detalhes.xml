@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:ap="http://schemas.android.com/tools"
     android:layout_margin="10dp"
     app:cardElevation="6dp">
 
@@ -16,10 +15,11 @@
             style="@style/APDefacto.Dark"
             android:layout_width="0dp"
             android:layout_height="300dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:background="@color/blue"
+            app:layout_constraintBottom_toTopOf="@id/imageLogoDetalhes"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/imageLogoDetalhes" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/imageLogoDetalhes"
@@ -37,7 +37,7 @@
             android:id="@+id/SymbolDel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="30dp"
             android:text="@string/hello_blank_fragment"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -49,7 +49,7 @@
             android:id="@+id/change_percentDel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="30dp"
             android:text="@string/hello_blank_fragment"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -84,7 +84,7 @@
             android:id="@+id/SetorDel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="70dp"
             android:text="@string/hello_blank_fragment"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -94,7 +94,7 @@
 
         <TextView
             android:id="@+id/DescripDel"
-            android:layout_width="wrap_content"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:text="@string/hello_blank_fragment"
