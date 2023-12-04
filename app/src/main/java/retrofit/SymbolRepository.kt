@@ -72,39 +72,20 @@ class SymbolRepository()
         return symbolSummaryList
     }
 
-    suspend fun getSymbolDetails(): MutableList<SymbolDetails> {
+    suspend fun getSymbolDetails(symbol: String): MutableList<SymbolDetails> {
         val SymbolsList = getSymbolsList()
         val symbolDetailsList = mutableListOf<SymbolDetails>()
-        for (symbol in symbolList){
-            if (symbol !in SymbolsRepository.getRepository().symbolList) {
-                val response = retrofitInterface.getSymbolDetails(symbol)
-                if (response.isSuccessful) {
-                    val tickerSummary = response.body()
-                    if (tickerSummary != null) {
-                        symbolDetailsList.add(tickerSummary)
-                    }
-
-                }
+        val response = retrofitInterface.getSymbolDetails(symbol)
+        if (response.isSuccessful) {
+            val tickerSummary = response.body()
+            if (tickerSummary != null) {
+                symbolDetailsList.add(tickerSummary)
             }
+
         }
         return symbolDetailsList
     }
 
-    suspend fun getSymbolDetailsInRepo(): MutableList<SymbolDetails> {
-        val SymbolsList = getSymbolsList()
-        val symbolDetailsList = mutableListOf<SymbolDetails>()
-        for (symbol in SymbolsRepository.getRepository().symbolList){
-            val response = retrofitInterface.getSymbolDetails(symbol)
-            if (response.isSuccessful) {
-                val tickerSummary = response.body()
-                if (tickerSummary != null) {
-                    symbolDetailsList.add(tickerSummary)
-                }
-
-            }
-        }
-        return symbolDetailsList
-    }
 
     suspend fun getNews(): Response<List<News>> {
         return retrofitInterface.getNews()

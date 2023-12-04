@@ -94,8 +94,9 @@ class RecyclerViewAdapterAtivosMon(private val mList: MutableList<SymbolSummary>
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     // Aqui você pode abrir o fragmento desejado
+                    val Item = mList[position]
                     val fragment =
-                        Detalhes()
+                        Detalhes(Item.symbol)
 
                     // Inicializa o FragmentManager
                     val fragmentManager: FragmentManager =

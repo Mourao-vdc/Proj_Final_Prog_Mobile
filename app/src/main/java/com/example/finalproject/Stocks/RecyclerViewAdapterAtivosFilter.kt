@@ -1,6 +1,5 @@
 package com.example.finalproject.Stocks
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,6 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finalproject.Detalhes
 import com.example.finalproject.R
-import com.example.finalproject.StockList
 import com.squareup.picasso.Picasso
 import retrofit.SymbolSummary
 
@@ -99,9 +97,10 @@ class RecyclerViewAdapterAtivosFilter(private val mList: MutableList<SymbolSumma
             detalhesButton.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
+                    val Item = mList[position] // Armazena o item a ser movido
                     // Aqui você pode abrir o fragmento desejado
                     val fragment =
-                        Detalhes()
+                        Detalhes(Item.symbol)
 
                     // Inicializa o FragmentManager
                     val fragmentManager: FragmentManager =

@@ -32,9 +32,9 @@ class SymbolViewModel : ViewModel() {
         }
     }
 
-    fun fetchSymbolDetails() {
+    fun fetchSymbolDetails(symbol: String) {
         viewModelScope.launch {
-            val response = repository.getSymbolDetails()
+            val response = repository.getSymbolDetails(symbol)
             _SymbolDetails.postValue(response)
         }
     }
@@ -57,10 +57,4 @@ class SymbolViewModel : ViewModel() {
         }
     }
 
-    fun fetchSymbolDetailsInRepo() {
-        viewModelScope.launch {
-            val response = repository.getSymbolDetailsInRepo()
-            _SymbolDetails.postValue(response)
-        }
-    }
 }

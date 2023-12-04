@@ -2,7 +2,6 @@ package com.example.finalproject
 
 import SymbolViewModel
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finalproject.Stocks.RecyclerViewAdapterDetalhes
 
-class Detalhes : Fragment() {
+class Detalhes(symbol: String) : Fragment() {
+
+    private var symbol: String = symbol
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +48,7 @@ class Detalhes : Fragment() {
         progressBar.visibility = View.VISIBLE
 
         val symbolViewModel = SymbolViewModel()
-        symbolViewModel.fetchSymbolDetails()
+        symbolViewModel.fetchSymbolDetails(symbol)
         symbolViewModel.SymbolDetails.observe(viewLifecycleOwner) { symbolDetails ->
             // Hide progress bar once data is loaded
             progressBar.visibility = View.GONE
