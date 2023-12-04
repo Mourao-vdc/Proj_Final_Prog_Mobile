@@ -28,6 +28,17 @@ class Detalhes(symbol: String) : Fragment() {
     ): View? {
 
         val view = inflater.inflate(R.layout.fragment_detalhes, container, false)
+        val swipeRefreshLayout = view.findViewById<androidx.swiperefreshlayout.widget.SwipeRefreshLayout>(R.id.swipeRefreshLayout)
+        swipeRefreshLayout.setOnRefreshListener {
+            val fragment = Detalhes(symbol)
+            val fragmentManager = requireActivity().supportFragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
+
+            fragmentTransaction.replace(R.id.frame_layout, fragment)
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+            swipeRefreshLayout.isRefreshing = false
+        }
         val progressBar: ProgressBar = view.findViewById(R.id.progressBar)
 
         // variavel com o id do botao

@@ -29,6 +29,18 @@ class Ativos_filter : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_ativos_filter, container, false)
+        val swipeRefreshLayout = view.findViewById<androidx.swiperefreshlayout.widget.SwipeRefreshLayout>(R.id.swipeRefreshLayout)
+        swipeRefreshLayout.setOnRefreshListener {
+            Toast.makeText(context, "Atualizando", Toast.LENGTH_SHORT).show()
+            val fragment = Ativos_filter()
+            val fragmentManager = requireActivity().supportFragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
+
+            fragmentTransaction.replace(R.id.frame_layout, fragment)
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+            swipeRefreshLayout.isRefreshing = false
+        }
         val progressBar : ProgressBar = view.findViewById(R.id.progressBar)
 
         // variavel com o id do botao
