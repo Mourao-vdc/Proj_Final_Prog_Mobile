@@ -9,20 +9,17 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <com.androidplot.xy.XYPlot
-            style="@style/APDefacto.Dark"
             android:id="@+id/plot"
-            android:layout_width="fill_parent"
+            style="@style/APDefacto.Dark"
+            android:layout_width="0dp"
             android:layout_height="300dp"
-            ap:title="A Simple XY Plot"
-            ap:rangeTitle="range"
-            ap:domainTitle="domain"
-            ap:lineLabels="left|bottom"
-            ap:lineLabelRotationBottom="-45"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/imageLogoDetalhes" />
 
         <ImageView
             android:id="@+id/imageLogoDetalhes"
