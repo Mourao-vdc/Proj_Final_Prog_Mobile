@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -26,6 +27,18 @@ class Noticias : Fragment() {
         val view = inflater.inflate(R.layout.fragment_noticias, container, false)
         val recyclerView: RecyclerView = view.findViewById(R.id.recyclerViewNews)
         val progressBar: ProgressBar = view.findViewById(R.id.progressBar)
+        val swipeRefreshLayout = view.findViewById<androidx.swiperefreshlayout.widget.SwipeRefreshLayout>(R.id.swipeRefreshLayout)
+        swipeRefreshLayout.setOnRefreshListener {
+            Toast.makeText(context, "Atualizando", Toast.LENGTH_SHORT).show()
+            val fragment = Noticias()
+            val fragmentManager = requireActivity().supportFragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
+
+            fragmentTransaction.replace(R.id.frame_layout, fragment)
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+            swipeRefreshLayout.isRefreshing = false
+        }
 
         // Set up RecyclerView layout manager and adapter
         val layoutManager = LinearLayoutManager(activity)
