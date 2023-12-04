@@ -3,26 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:ap="http://schemas.android.com/tools"
     android:layout_margin="10dp"
     app:cardElevation="6dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <com.androidplot.xy.XYPlot
-            style="@style/APDefacto.Dark"
             android:id="@+id/plot"
-            android:layout_width="fill_parent"
+            style="@style/APDefacto.Dark"
+            android:layout_width="0dp"
             android:layout_height="300dp"
-            ap:title="A Simple XY Plot"
-            ap:rangeTitle="range"
-            ap:domainTitle="domain"
-            ap:lineLabels="left|bottom"
-            ap:lineLabelRotationBottom="-45"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            android:background="@color/blue"
+            app:layout_constraintBottom_toTopOf="@id/imageLogoDetalhes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/imageLogoDetalhes"
@@ -40,7 +37,7 @@
             android:id="@+id/SymbolDel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="30dp"
             android:text="@string/hello_blank_fragment"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -52,7 +49,7 @@
             android:id="@+id/change_percentDel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="30dp"
             android:text="@string/hello_blank_fragment"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -87,7 +84,7 @@
             android:id="@+id/SetorDel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="70dp"
             android:text="@string/hello_blank_fragment"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -97,7 +94,7 @@
 
         <TextView
             android:id="@+id/DescripDel"
-            android:layout_width="wrap_content"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:text="@string/hello_blank_fragment"

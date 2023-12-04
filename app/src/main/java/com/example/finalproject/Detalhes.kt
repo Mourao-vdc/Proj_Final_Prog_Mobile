@@ -35,7 +35,7 @@ class Detalhes(symbol: String) : Fragment() {
 
         // ação de clique
         backAtivos.setOnClickListener {
-            val fragment = Ativos()
+            val fragment = Ativos_filter()
             val fragmentManager = requireActivity().supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()
 
